@@ -7,7 +7,6 @@ import axios from 'axios'
 
 const Container = styled.div`
 flex: 2;
-
 `
 
 
@@ -22,9 +21,9 @@ const Recommendation = ({tags}) => {
     },[tags])
       return (
     <Container>
-{video?.map(video=>{
+{video?.map(video=>(
 <Card type="sm" key={video._id} video={video}/>
-})}
+))}
     </Container>
   )
 }

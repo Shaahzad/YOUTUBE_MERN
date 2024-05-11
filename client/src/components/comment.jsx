@@ -39,7 +39,7 @@ const Comment = ({comment}) => {
       setchannel(res.data)
     }
     fetchcomment()
-  },[comment.userId])
+  },[comment?.userId])
   return (
     <Container>
       <Avatar src={channel?.img} />
