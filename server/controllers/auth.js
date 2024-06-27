@@ -10,7 +10,7 @@ export const signup = async (req,res,next)=>{
         const newuser = new User({...req.body, password:hash})
 
         await newuser.save()
-        res.status(200).json("user has been created")
+        res.status(200).json("user has been created successfully Now you can login") 
      } catch (error) {
         next(error)
      }
@@ -30,7 +30,7 @@ export const signin = async (req,res,next)=>{
         httpOnly:true
     })
     
-    .status(200).json(others)
+    .status(200).json({...others,token})
     } catch (error) {
        next(error)
     }

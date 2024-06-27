@@ -5,6 +5,7 @@ import {  useState } from 'react';
 import  { useNavigate } from "react-router-dom"
 import axios from "axios"
 import app from "../firebase.js"
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
 width: 100%;
@@ -89,8 +90,6 @@ const uploadTask = uploadBytesResumable(storageRef, file);
 
 uploadTask.on('state_changed', 
   (snapshot) => {
-    // Observe state change events such as progress, pause, and resume
-    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     urlType === "imgUrl" ? setImgPerc(Math.round(progress)) : setVideoPerc(Math.round(progress))
     switch (snapshot.state) {
@@ -126,8 +125,10 @@ useEffect(() => {
 
 const handelupload = async (e) => {
   e.preventDefault()
-  const res = await axios.post("http://localhost:8800/api/videos",{...input,tags,imgUrl:input.img,videoUrl:input.video},{
-    withCredentials: true
+  const token = localStorage.getItem("token")
+  const res = await axios.post("http://localhost:8800/api/videos",{...input, tags, imgUrl: input.imgUrl, videoUrl: input.videoUrl},{
+    headers: {Authorization: `Bearer ${token}`},
+    withCredentials: true 
   })
   setopen(false)
   res.status === 200 && navigate(`http://localhost:8800/api/video/${res.data._id}`,null,{
@@ -140,12 +141,17 @@ const handelupload = async (e) => {
             <Close onClick={() => setopen(false)}>X</Close>
             <Title>upload a new video</Title>
             <Label>Video:</Label>
-     {videoPerc > 0 ? "Uploading " + videoPerc + "%" : <Input type='file' accept='video/*' onChange={(e)=>setVideo(e.target.files[0])}/>}            
+     {videoPerc > 0 ? ("Uploading " + videoPerc + "%") : (<Input type='file' accept='video/*' onChange={(e)=>setVideo(e.target.files[0])}/>)}            
   <Input type='text' placeholder='Title' name='title' onChange={handelChange}/>
             <Desc placeholder='Description' rows={8} name='desc' onChange={handelChange}/>
             <Input type='text' placeholder='seprate the tags with comma' onChange={Handeltags}/>
             <Label>Image:</Label>
-     {imgPerc > 0 ? "Uploading " + imgPerc + "%" :  <Input type='file' accept='image/*' onChange={(e)=>setImg(e.target.files[0])}/>}
+     {
+     imgPerc > 0 ? ("Uploading " + imgPerc + "%")
+      : 
+       (<Input type='file' accept='image/*' onChange={(e)=>setImg(e.target.files[0])}/>)
+       
+       }
              <Button onClick={handelupload}>Upload</Button>
         </Wrapper>
     </Container>

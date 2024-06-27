@@ -10,14 +10,16 @@ import { format } from 'timeago.js'
 import axios from 'axios'
 import { Subscriptions } from '../../redux/userslice.js'
 import Recommendation from '../recommendation'
+
 const Container = styled.div`
 display: flex;
-gap: 10px;
+gap: 24px;
 `
 const Content = styled.div`
 flex: 5;
 `
 const VideoWrapper = styled.div`
+
 `
 const Title = styled.h1`
 font-size: 18px;
@@ -158,8 +160,8 @@ return (
            {currentVideo?.views}  views ·  {format(currentVideo?.createdAt)}
             </Info> 
             <Buttons>
-                <Button onClick={Handellike}>{currentVideo?.likes.includes(currentUser._id) ? (<ThumbUp/> ):(<ThumbUpOutlined/>)}{" "} {currentVideo?.likes?.length}</Button>
-                <Button onClick={Handeldislike}>{currentVideo?.dislikes.includes(currentUser._id) ? (<ThumbDown/>): (<ThumbDownAltOutlined/>)}Dislike</Button>
+                <Button onClick={Handellike}>{currentVideo?.likes.includes(currentUser?._id) ? (<ThumbUp/> ):(<ThumbUpOutlined/>)}{" "} {currentVideo?.likes?.length}</Button>
+                <Button onClick={Handeldislike}>{currentVideo?.dislikes.includes(currentUser?._id) ? (<ThumbDown/>): (<ThumbDownAltOutlined/>)}Dislike</Button>
                 <Button><ReplyOutlined/>Share</Button>
                 <Button><AddTaskOutlined/>Save</Button>
             </Buttons>
@@ -176,7 +178,7 @@ return (
        </Description>
         </ChannelDetail>
         </ChannelInfo>
-        <Subscribe onClick={HandelSub}>{currentUser.subscribedUsers?.includes(channel._id) ? "SUBSCRIBED" : "SUBSCRIBE"}</Subscribe>
+        <Subscribe onClick={HandelSub}>{currentUser?.subscribedUsers?.includes(channel._id) ? "SUBSCRIBED" : "SUBSCRIBE"}</Subscribe>
       </Channel>
       <HR/>
         <Comments videoId={currentVideo?._id}/>

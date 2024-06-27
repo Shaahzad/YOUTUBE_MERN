@@ -13,8 +13,8 @@ gap: 10px
 `
 
 const Img = styled.img`
-width: 100%;
-height: ${({type})=> type === "sm" ? "120px" : "202px"};
+width: 300px;
+height: ${({type})=> type === "sm" ? "100px" : "200px"};
 object-fit: cover;
 background-color: #999;
 margin-top: 10px;

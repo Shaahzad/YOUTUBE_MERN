@@ -5,6 +5,7 @@ import { loginFailure, loginSuccess, loginstart } from '../redux/userslice'
 import { useDispatch } from 'react-redux'
 import {auth,provider} from "../firebase.js"
 import { signInWithPopup } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
 display:flex;
@@ -71,17 +72,35 @@ export const Signin = () => {
   const [name,setName] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
-  const handlelogin = async (e) => {
+  const handlesignup = async (e) => {
     e.preventDefault()
     dispatch(loginstart())
+    try {
+      const res = await axios.post("http://localhost:8800/api/auth/signup",{name,email,password},{
+        withCredentials: true
+      })
+      console.log(res)
+       dispatch(loginSuccess(res.data))
+       alert(res.data)
+    } catch (error) {
+        dispatch(loginFailure())
+    }
+  }
+
+  const handlelogin = async (e) => {
+    e.preventDefault()
+    // dispatch(loginstart())
     try {
       const res = await axios.post("http://localhost:8800/api/auth/signin",{name,password},{
         withCredentials: true
       })
+       localStorage.setItem("token", res.data.token)
        dispatch(loginSuccess(res.data))
+       navigate("/")
     } catch (error) {
         dispatch(loginFailure())
     }
@@ -96,6 +115,7 @@ export const Signin = () => {
           img:res.user.photoURL
         }).then((res)=>{
           dispatch(loginSuccess(res.data))
+          navigate("/")
         })
     }).catch((err)=>{
       dispatch(loginFailure())
@@ -114,8 +134,8 @@ export const Signin = () => {
          <Title>Or</Title>
          <Input placeholder='username' onChange={(e) => setName(e.target.value)}/>
          <Input type='email' placeholder='email' onChange={(e) => setEmail(e.target.value)}/>
-         <Input type='password' onChange={(e) => setPassword(e.target.value)}/>
-         <Button>Sign up</Button>
+         <Input type='password' placeholder='password' onChange={(e) => setPassword(e.target.value)}/>
+         <Button onClick={handlesignup}>Sign up</Button>
         </Wrapper>
         <More>
             English (USA)

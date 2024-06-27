@@ -19,8 +19,9 @@ import SettingsBrightnessOutlinedIcon from '@mui/icons-material/SettingsBrightne
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+
  const Container = styled.div`
-   flex: 1;
+  flex: 1;
   background-color: ${({theme}) => theme.bglight};
   height: 100vh;
   color: ${({theme}) => theme.text};

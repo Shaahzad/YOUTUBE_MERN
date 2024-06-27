@@ -9,6 +9,7 @@ import Home from "./components/pages/home"
 import Video from "./components/pages/video"
 import Signin from "./components/signin"
 import Search from "./components/pages/search"
+import { useSelector } from "react-redux"
 
 const Container = styled.div`
    display: flex;
@@ -24,6 +25,7 @@ const Wrapper = styled.div`
 
 function App() {
 const [theme, setTheme] = useState(true)
+const {currentUser} = useSelector((state) => state.user)
   return (
     <ThemeProvider theme={theme ? darkTheme : lightTheme}>
     <Container>
@@ -34,9 +36,9 @@ const [theme, setTheme] = useState(true)
     <Wrapper>
    <Routes>
     <Route path="/">
-     <Route index element={<Home type="random"/>}/>
-     <Route path="trends" element={<Home type="trend"/>}/>
-     <Route path="subscriptions" element={<Home type="sub"/>}/>
+     <Route index element={currentUser ? <Home type="random"/> : <Signin/>}/>
+     <Route path="trends" element={currentUser ? <Home type="trend"/> :   <Signin/>}/>
+     <Route path="subscriptions" element={currentUser ? <Home type="sub"/> : <Signin/>}/>
      <Route path="search" element={<Search/>}/>
      <Route path="signin" element={<Signin/>}/>
      </Route>
