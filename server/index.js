@@ -16,14 +16,14 @@ const connect = ()=>{
 mongoose.connect(process.env.MONGO_URL).then(()=>console.log("connected to mongoDB")).catch((err)=>console.log(err))
 }
 
+app.use(cookieParser())
+app.use(express.json())
 
 
 app.use(cors({
     origin:"https://youtube-mern-three.vercel.app",
     withCredentials: true
 }))
-app.use(cookieParser())
-app.use(express.json())
 
 app.use("/", (req, res) => {
     res.send("hello")
