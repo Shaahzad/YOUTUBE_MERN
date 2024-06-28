@@ -20,11 +20,13 @@ app.use(cookieParser())
 app.use(express.json())
 
 
-app.use(cors({
+const corsorigin = {
     origin:"https://youtube-mern-three.vercel.app",
-    withCredentials: true
-}))
+    credentials:true,
+    optionSuccessStatus:200
+}
 
+app.use(cors())
 app.use("/", (req, res) => {
     res.send("hello")
 })
