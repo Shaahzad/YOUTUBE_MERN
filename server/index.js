@@ -16,11 +16,14 @@ mongoose.connect(process.env.MONGO_URL).then(()=>console.log("connected to mongo
 }
 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:"https://youtube-mern-three.vercel.app",
     credentials:true
 }))
 app.use(cookieParser())
 app.use(express.json())
+app.use("/", (req, res, next) => {
+    res.send("hello")
+})
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/videos", videoRoutes)
