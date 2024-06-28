@@ -77,7 +77,7 @@ export const Signin = () => {
 
   const handlelogin = async (e) => {
     e.preventDefault()
-    // dispatch(loginstart())
+    dispatch(loginstart())
     try {
        await axios.post("https://youtube-mern-backend.vercel.app/api/auth/signin",{name,password},{
         withCredentials: true
@@ -88,7 +88,7 @@ export const Signin = () => {
         navigate("/")
       })
     } catch (error) {
-        // dispatch(loginFailure())
+        dispatch(loginFailure())
     }
   }
 
@@ -110,15 +110,15 @@ export const Signin = () => {
 
   const handlesignup = async (e) => {
     e.preventDefault()
-    // dispatch(loginstart())
+    dispatch(loginstart())
     try {
       const res = await axios.post("https://youtube-mern-backend.vercel.app/api/auth/signup",{name,email,password},{
         withCredentials: true,
       })
-      //  dispatch(loginSuccess(res.data))
+       dispatch(loginSuccess(res.data))
        alert(res.data)
     } catch (error) {
-        // dispatch(loginFailure())
+        dispatch(loginFailure())
     }
     setName("")
     setEmail("")
