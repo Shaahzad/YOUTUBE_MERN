@@ -58,7 +58,7 @@ const [channel,setChannel] = useState({})
 
 useEffect(()=>{
   const fetchChannel = async ()=>{
-    const res = await axios.get(`http://localhost:8800/api/users/find/${video.userId}`)
+    const res = await axios.get(`https://youtube-mern-backend.vercel.app/api/users/find/${video.userId}`)
     setChannel(res.data)
   }
   fetchChannel()

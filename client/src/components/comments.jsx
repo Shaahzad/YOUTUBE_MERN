@@ -33,7 +33,7 @@ const Comments = ({videoId}) => {
   useEffect(()=>{
     const fetchcomment = async ()=>{
        try {
-        const res =  await axios.get(`http://localhost:8800/api/comments/${videoId}`,{},{withCredentials:true})
+        const res =  await axios.get(`https://youtube-mern-backend.vercel.app/api/comments/${videoId}`,{},{withCredentials:true})
         setcomment(res.data)
        } catch (error) {
         
