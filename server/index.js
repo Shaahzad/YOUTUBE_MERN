@@ -26,7 +26,7 @@ const corsorigin = {
     optionSuccessStatus:200
 }
 
-app.use(cors())
+app.use(cors(corsorigin))
 app.use("/", (req, res) => {
     res.send("hello")
 })
