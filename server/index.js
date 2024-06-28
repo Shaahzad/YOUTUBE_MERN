@@ -19,6 +19,9 @@ mongoose.connect(process.env.MONGO_URL).then(()=>console.log("connected to mongo
 app.use(cookieParser())
 app.use(express.json())
 
+app.use("/", (req, res) => {
+    res.send("hello")
+})
 
 const corsOptions  = {
     origin:"https://youtube-mern-three.vercel.app",
@@ -40,9 +43,6 @@ app.use("/api/videos", videoRoutes)
 app.use("/api/comments", commentRoutes)
 
 
-app.use("/", (req, res) => {
-    res.send("hello")
-})
 
 app.use((err,req,res,next)=>{
     const status = err.status || 500;
