@@ -6,7 +6,7 @@ import axios from 'axios'
 
 
 const Container = styled.div`
-flex: 2;
+flex: 1;
 `
 
 

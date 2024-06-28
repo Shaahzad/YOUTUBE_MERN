@@ -109,6 +109,7 @@ uploadTask.on('state_changed',
   () => {
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
       setinput((prev)=>{
+        console.log({...prev, [urlType] : downloadURL})
     return {...prev, [urlType] : downloadURL}
   })
     });
@@ -126,10 +127,11 @@ useEffect(() => {
 const handelupload = async (e) => {
   e.preventDefault()
   const token = localStorage.getItem("token")
-  const res = await axios.post("http://localhost:8800/api/videos",{...input, tags, imgUrl: input.imgUrl, videoUrl: input.videoUrl},{
+  const res = await axios.post("http://localhost:8800/api/videos",{...input, tags, imgUrl: input.img, videoUrl: input.video},{
     headers: {Authorization: `Bearer ${token}`},
     withCredentials: true 
   })
+  window.location.reload()
   setopen(false)
   res.status === 200 && navigate(`http://localhost:8800/api/video/${res.data._id}`,null,{
     withCredentials: true

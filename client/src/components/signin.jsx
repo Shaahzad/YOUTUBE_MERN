@@ -83,8 +83,10 @@ export const Signin = () => {
       const res = await axios.post("http://localhost:8800/api/auth/signup",{name,email,password},{
         withCredentials: true
       })
-      console.log(res)
        dispatch(loginSuccess(res.data))
+       setEmail("")
+       setPassword("")
+       setName("")
        alert(res.data)
     } catch (error) {
         dispatch(loginFailure())
@@ -100,6 +102,8 @@ export const Signin = () => {
       })
        localStorage.setItem("token", res.data.token)
        dispatch(loginSuccess(res.data))
+       setName("")
+       setPassword("")
        navigate("/")
     } catch (error) {
         dispatch(loginFailure())

@@ -96,6 +96,7 @@ const VideoFrame = styled.video`
   max-height: 500px;
   width: 100%;
   object-fit: cover;
+
 `
 
 

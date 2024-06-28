@@ -6,9 +6,9 @@ import { useLocation } from 'react-router-dom'
 
 
 const Container = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 10px;
 `
 const Search = () => {
   const [videos, setVideos] = useState([]);

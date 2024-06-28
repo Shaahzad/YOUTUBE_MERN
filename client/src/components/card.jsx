@@ -9,7 +9,8 @@ width: ${({type})=> type !== "sm" && "360px"};
 margin-bottom: ${({type})=> type === "10px" && "45px"};
 cursor: pointer;
 display: ${({type})=> type === "sm" && "flex"};
-gap: 10px
+gap: 10px;
+align-items: center;
 `
 
 const Img = styled.img`
@@ -18,14 +19,14 @@ height: ${({type})=> type === "sm" ? "100px" : "200px"};
 object-fit: cover;
 background-color: #999;
 margin-top: 10px;
-flex: 1;
+flex: 3;
 `
 
 const Detail = styled.div`
 display: flex;
 margin-top: ${({type})=> type !== "sm" && "16px"};
 gap: 20px;
-flex: 1;
+flex: 2;
 `
 const ChannelLogo = styled.img`
 width: 36px;

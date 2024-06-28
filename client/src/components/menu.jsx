@@ -21,9 +21,9 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
  const Container = styled.div`
-  flex: 1;
+  flex: 1 1 0%;
   background-color: ${({theme}) => theme.bglight};
-  height: 100vh;
+  height: 160vh;
   color: ${({theme}) => theme.text};
   font-size: 14px;
   position: sticky;
