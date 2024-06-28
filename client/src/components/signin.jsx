@@ -73,37 +73,16 @@ export const Signin = () => {
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
   const navigate = useNavigate()
-
   const dispatch = useDispatch()
-
-  const handlesignup = async (e) => {
-    e.preventDefault()
-    dispatch(loginstart())
-    try {
-      const res = await axios.post("http://localhost:8800/api/auth/signup",{name,email,password},{
-        withCredentials: true
-      })
-       dispatch(loginSuccess(res.data))
-       setEmail("")
-       setPassword("")
-       setName("")
-       alert(res.data)
-    } catch (error) {
-        dispatch(loginFailure())
-    }
-  }
-
   const handlelogin = async (e) => {
     e.preventDefault()
-    // dispatch(loginstart())
+    dispatch(loginstart())
     try {
       const res = await axios.post("http://localhost:8800/api/auth/signin",{name,password},{
         withCredentials: true
       })
        localStorage.setItem("token", res.data.token)
        dispatch(loginSuccess(res.data))
-       setName("")
-       setPassword("")
        navigate("/")
     } catch (error) {
         dispatch(loginFailure())
@@ -125,6 +104,23 @@ export const Signin = () => {
       dispatch(loginFailure())
     })
   }
+
+  const handlesignup = async (e) => {
+    e.preventDefault()
+    dispatch(loginstart())
+    try {
+      const res = await axios.post("http://localhost:8800/api/auth/signup",{name,email,password},{
+        withCredentials: true,
+      })
+       dispatch(loginSuccess(res.data))
+       alert(res.data)
+    } catch (error) {
+        dispatch(loginFailure())
+    }
+     
+  }
+  
+
   return (
     <Container>
         <Wrapper>

@@ -125,7 +125,7 @@ export const Menu = ({theme, setTheme}) => {
                     History
                     </Item>
                     <HR/>
-{                  !currentUser &&
+{                  !currentUser?.name &&
     <>
       <Login>
                         Sign in to like s, comment, and subscribe.

@@ -106,9 +106,9 @@ const dispatch = useDispatch()
         <Input placeholder='Search' onChange={(e)=>setq(e.target.value)}/>
         <SearchOutlinedIcon onClick={()=>navigate(`/search?q=${q}`)}/>
         </Search>
-{  currentUser ? (<User>
+{  currentUser?.name ? (<User>
   <VideoCallOutlined style={{cursor: "pointer"}} onClick={()=>setopen(true)}/>
-  <Avatar src={currentUser?.img || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}/>
+  <Avatar/>
   {currentUser?.name}
   <Buttons onClick={logoutHandler}>log out</Buttons>
 </User> 
