@@ -20,19 +20,19 @@ app.use(cookieParser())
 app.use(express.json())
 
 
-const corsorigin = {
+const corsOptions  = {
     origin:"https://youtube-mern-three.vercel.app",
     credentials:true,
     optionSuccessStatus:200
 }
 
-app.use(cors(corsorigin))
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://youtube-mern-three.vercel.app");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
-});
+app.use(cors(corsOptions ))
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "https://youtube-mern-three.vercel.app");
+//     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//     next();
+// });
 
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
