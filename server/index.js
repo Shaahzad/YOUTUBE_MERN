@@ -23,13 +23,12 @@ app.use("/", (req, res) => {
     res.send("hello")
 })
 
-const corsOptions  = {
+
+app.use(cors({
     origin:"https://youtube-mern-three.vercel.app",
     credentials:true,
     optionSuccessStatus:200
-}
-
-app.use(cors(corsOptions ))
+}))
 // app.use((req, res, next) => {
 //     res.header("Access-Control-Allow-Origin", "https://youtube-mern-three.vercel.app");
 //     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
