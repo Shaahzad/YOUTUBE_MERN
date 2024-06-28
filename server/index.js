@@ -27,9 +27,9 @@ const corsorigin = {
 }
 
 app.use(cors(corsorigin))
-app.use("/", (req, res) => {
-    res.send("hello")
-})
+// app.use("/", (req, res) => {
+//     res.send("hello")
+// })
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/videos", videoRoutes)

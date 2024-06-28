@@ -82,7 +82,7 @@ export const Signin = () => {
       const res = await axios.post("https://youtube-mern-backend.vercel.app/api/auth/signin",{name,password},{
         withCredentials: true
       })
-      console.log(res.data)
+      console.log(res.data.token)
        localStorage.setItem("token", res.data.token)
        dispatch(loginSuccess(res.data))
        navigate("/")
