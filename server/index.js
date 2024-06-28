@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGO_URL).then(()=>console.log("connected to mongo
 
 app.use(cors({
     origin:"https://youtube-mern-three.vercel.app",
-    credentials:true
+    withCredentials: true
 }))
 app.use(cookieParser())
 app.use(express.json())
