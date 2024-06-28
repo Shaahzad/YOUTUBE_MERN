@@ -79,14 +79,13 @@ export const Signin = () => {
     e.preventDefault()
     dispatch(loginstart())
     try {
-       await axios.post("https://youtube-mern-backend.vercel.app/api/auth/signin",{name,password},{
+      const res = await axios.post("https://youtube-mern-backend.vercel.app/api/auth/signin",{name,password},{
         withCredentials: true
-      }).then((res)=>{
-        console.log(res.data.token)
-        localStorage.setItem("token", res.data.token)
+      })
+        console.log(res?.data?.token)
+        localStorage.setItem("token", res?.data?.token)
         dispatch(loginSuccess(res.data))
         navigate("/")
-      })
     } catch (error) {
         dispatch(loginFailure())
     }
