@@ -22,7 +22,7 @@ app.use(express.json())
 
 
 app.use(cors({
-    origin:"https://youtube-mern-three.vercel.app",
+    origin:"https://youtube-mern-front.vercel.app",
     credentials:true,
 }))
 
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
     res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
     next();
   });
-    
+
 
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
