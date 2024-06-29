@@ -20,7 +20,7 @@ app.use(cookieParser())
 app.use(express.json())
 
 const corsOptions = {
-    origin: "https://youtube-mern-front.vercel.app",
+    origin: 'https://youtube-mern-front.vercel.app',
     credentials: true
   };
 app.use(cors(corsOptions))

@@ -79,7 +79,7 @@ export const Signin = () => {
     e.preventDefault()
     dispatch(loginstart())
     try {
-      const res = await axios.post("https://youtube-mern-back.vercel.app/api/auth/signin",{name,password},{
+      const res = await axios.post('https://youtube-mern-back.vercel.app/api/auth/signin',{name,password},{
         withCredentials: true,
       })
         console.log(res.data.token)
@@ -94,7 +94,7 @@ export const Signin = () => {
   const signinwithgoogle = async ()=>{
     dispatch(loginstart())
       signInWithPopup(auth,provider).then((res)=>{
-       axios.post("https://youtube-mern-back.vercel.app/api/auth/google",{
+       axios.post('https://youtube-mern-back.vercel.app/api/auth/google',{
           name:res.user.displayName,
           email:res.user.email,
           img:res.user.photoURL
@@ -111,7 +111,7 @@ export const Signin = () => {
     e.preventDefault()
     dispatch(loginstart())
     try {
-      const res = await axios.post("https://youtube-mern-back.vercel.app/api/auth/signup",{name,email,password},{
+      const res = await axios.post('https://youtube-mern-back.vercel.app/api/auth/signup',{name,email,password},{
         withCredentials: true,
       })
        dispatch(loginSuccess(res.data))
