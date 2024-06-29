@@ -27,6 +27,8 @@ app.use("/", (req, res) => {
 app.use(cors({
     origin:"https://youtube-mern-front.vercel.app",
     credentials:true,
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
 }))
 
 app.use("/api/auth", authRoutes)
