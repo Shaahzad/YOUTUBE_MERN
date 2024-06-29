@@ -24,10 +24,7 @@ app.get("/", (req, res) => {
 })
 
 
-app.use(cors({
-    origin:"https://youtube-mern-front.vercel.app",
-    credentials:true,
-}))
+app.use(cors())
 
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
