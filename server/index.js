@@ -23,6 +23,14 @@ app.get("/", (req, res) => {
     res.send("hello")
 })
 
+app.use(cors({
+    origin:"*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+    preflightContinue: true,
+}))
+
+
 app.use((req, res, next) => {
     res.setHeader(
       "Access-Control-Allow-Origin",
@@ -43,12 +51,7 @@ app.use((req, res, next) => {
   });
 
 
-app.use(cors({
-    origin:"*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-    preflightContinue: true,
-}))
+
 
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
