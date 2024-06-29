@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
     res.send("hello")
 })
 const corsOptions = {
-    origin: "https://youtube-mern-back.vercel.app",
+    origin: "https://youtube-mern-front.vercel.app",
     credentials: true
   };
 app.use(cors(corsOptions))
