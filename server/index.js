@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 
 app.use(cors({
-    origin:"https://youtube-mern-three.vercel.app",
+    origin:"https://youtube-mern-front.vercel.app",
     credentials:true,
 }))
 
