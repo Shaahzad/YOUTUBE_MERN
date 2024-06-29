@@ -24,6 +24,10 @@ app.get("/", (req, res) => {
 })
 
 
+header("Access-Control-Allow-Origin","https://youtube-mern-front.vercel.app");
+header("Access-Control-Allow-Methods","GET,POST,PUT,DELETE");
+header("Access-Control-Allow-Headers","Content-Type", X-Auth-Token, Origin, Authorization);
+
 app.use(cors({
     origin:"https://youtube-mern-front.vercel.app",
     credentials:true
