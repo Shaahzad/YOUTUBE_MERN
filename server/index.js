@@ -19,33 +19,22 @@ mongoose.connect(process.env.MONGO_URL).then(()=>console.log("connected to mongo
 app.use(cookieParser())
 app.use(express.json())
 
+
+
+app.use(cors({
+    origin:"https://youtube-mern-three.vercel.app",
+    credentials:true,
+}))
+
 app.get("/", (req, res) => {
     res.send("hello")
 })
-
-const corsOptions = {
-    origin: 'https://youtube-mern-front.vercel.app',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'X-Auth-Token', 'Origin', 'Authorization'],
-    credentials: true
-  };
-    
-app.use(cors(corsOptions))
-
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://youtube-mern-front.vercel.app');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true'); // This is the important part for allowing credentials
-    
-    // Handle preflight requests
-    if (req.method === 'OPTIONS') {
-      return res.status(200).end();
-    }
-  
+    res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+    res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
     next();
   });
-
+    
 
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
