@@ -19,6 +19,9 @@ mongoose.connect(process.env.MONGO_URL).then(()=>console.log("connected to mongo
 app.use(cookieParser())
 app.use(express.json())
 
+app.get("/", (req, res) => {
+    res.send("hello")
+})
 
 
 app.use(cors({
@@ -26,9 +29,6 @@ app.use(cors({
     credentials:true,
 }))
 
-app.get("/", (req, res) => {
-    res.send("hello")
-})
 app.use((req, res, next) => {
     res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
     res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
