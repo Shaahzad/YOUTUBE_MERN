@@ -22,35 +22,11 @@ app.use(express.json())
 app.get("/", (req, res) => {
     res.send("hello")
 })
-
-app.use(cors({
-    origin:"*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-    preflightContinue: true,
-}))
-
-
-app.use((req, res, next) => {
-    res.setHeader(
-      "Access-Control-Allow-Origin",
-       "*"
-    );
-    res.setHeader(
-      "Access-Control-Allow-Methods",
-      "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
-    );
-    res.setHeader(
-      "Access-Control-Allow-Headers",
-      "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
-    );
-    res.setHeader("Access-Control-Allow-Credentials", true);
-    res.setHeader("Access-Control-Allow-Private-Network", true);
-  
-    next();
-  });
-
-
+const corsOptions = {
+    origin: "https://youtube-mern-back.vercel.app",
+    credentials: true
+  };
+app.use(cors(corsOptions))
 
 
 app.use("/api/auth", authRoutes)
