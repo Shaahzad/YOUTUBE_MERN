@@ -14,7 +14,7 @@ const Home = ({type}) => {
 
   useEffect(()=>{
     const fetchVideo = async () => {
-      const res = await axios.get(`https://youtube-mern-backend.vercel.app/api/videos/${type}`)
+      const res = await axios.get(`https://youtube-mern-back.vercel.app/api/videos/${type}`)
       setVideos(res.data)
     }
     fetchVideo()

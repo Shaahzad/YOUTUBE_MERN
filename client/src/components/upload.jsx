@@ -127,13 +127,13 @@ useEffect(() => {
 const handelupload = async (e) => {
   e.preventDefault()
   const token = localStorage.getItem("token")
-  const res = await axios.post("https://youtube-mern-backend.vercel.app/api/videos",{...input, tags, imgUrl: input.img, videoUrl: input.video},{
+  const res = await axios.post("https://youtube-mern-back.vercel.app/api/videos",{...input, tags, imgUrl: input.img, videoUrl: input.video},{
     headers: {Authorization: `Bearer ${token}`},
     withCredentials: true 
   })
   window.location.reload()
   setopen(false)
-  res.status === 200 && navigate(`https://youtube-mern-backend.vercel.app/api/video/${res.data._id}`,null,{
+  res.status === 200 && navigate(`https://youtube-mern-back.vercel.app/api/video/${res.data._id}`,null,{
     withCredentials: true
   })
 }

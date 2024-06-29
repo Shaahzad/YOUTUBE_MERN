@@ -13,7 +13,7 @@ flex: 1;
 const Recommendation = ({tags}) => {
     const [video,setvideo] = useState([])
         const fetchvideo = async ()=>{
-            const res = await axios.get(`https://youtube-mern-backend.vercel.app/api/videos/tags?tags=${tags}`)
+            const res = await axios.get(`https://youtube-mern-back.vercel.app/api/videos/tags?tags=${tags}`)
             setvideo(res.data)
         }
       useEffect(()=>{

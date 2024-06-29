@@ -35,7 +35,7 @@ const Comment = ({comment}) => {
 
   useEffect(()=>{
     const fetchcomment = async ()=>{
-      const res = await axios.get(`https://youtube-mern-backend.vercel.app/api/users/find/${comment.userId}`)
+      const res = await axios.get(`https://youtube-mern-back.vercel.app/api/users/find/${comment.userId}`)
       setchannel(res.data)
     }
     fetchcomment()

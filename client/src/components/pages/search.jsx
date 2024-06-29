@@ -17,7 +17,7 @@ const Search = () => {
 
   const fetchVideos = async () => {
       try {
-          const res = await axios.get(`https://youtube-mern-backend.vercel.app/api/videos/search${query}`);
+          const res = await axios.get(`https://youtube-mern-back.vercel.app/api/videos/search${query}`);
           setVideos(res.data);
       } catch (error) {
           console.error("Error fetching videos:", error);

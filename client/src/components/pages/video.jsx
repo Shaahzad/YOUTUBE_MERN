@@ -111,8 +111,8 @@ const Video = () => {
 
     const fetchVideo = async () => {
       try{
-      const videores = await axios.get(`https://youtube-mern-backend.vercel.app/api/videos/find/${path}`)
-      const channelres = await axios.get(`https://youtube-mern-backend.vercel.app/api/users/find/${videores.data.userId}`)
+      const videores = await axios.get(`https://youtube-mern-back.vercel.app/api/videos/find/${path}`)
+      const channelres = await axios.get(`https://youtube-mern-back.vercel.app/api/users/find/${videores.data.userId}`)
       setChannel(channelres.data)
       dispatch(fetchSuccess(videores.data))
       }catch(error){
@@ -124,7 +124,7 @@ const Video = () => {
   },[path,dispatch])
 
   const Handellike = async () => {
-    await axios.put(`https://youtube-mern-backend.vercel.app/api/users/like/${currentVideo._id}`,null,{
+    await axios.put(`https://youtube-mern-back.vercel.app/api/users/like/${currentVideo._id}`,null,{
       withCredentials: true,
     },
     dispatch(like(currentUser._id))
@@ -133,7 +133,7 @@ const Video = () => {
 }
 
 const Handeldislike = async () => {
-    await axios.put(`https://youtube-mern-backend.vercel.app/api/users/dislike/${currentVideo._id}`,null,{
+    await axios.put(`https://youtube-mern-back.vercel.app/api/users/dislike/${currentVideo._id}`,null,{
       withCredentials: true
     },
     dispatch(dislike(currentUser._id))
@@ -142,9 +142,9 @@ const Handeldislike = async () => {
 
 const HandelSub = async ()=>{
   currentUser.subscribedUsers.includes(channel._id)  ?
-  await axios.put(`https://youtube-mern-backend.vercel.app/api/users/unsub/${channel._id}`,null,{withCredentials: true})    
+  await axios.put(`https://youtube-mern-back.vercel.app/api/users/unsub/${channel._id}`,null,{withCredentials: true})    
                          :
-await axios.put(`https://youtube-mern-backend.vercel.app/api/users/sub/${channel._id}`,null,{withCredentials: true})
+await axios.put(`https://youtube-mern-back.vercel.app/api/users/sub/${channel._id}`,null,{withCredentials: true})
 dispatch(Subscriptions(channel._id))
 }
 
