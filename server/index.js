@@ -23,15 +23,27 @@ app.get("/", (req, res) => {
     res.send("hello")
 })
 
+const corsOptions = {
+    origin: 'https://youtube-mern-front.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'X-Auth-Token', 'Origin', 'Authorization'],
+  };
+    
+app.use(cors(corsOptions))
 
-header("Access-Control-Allow-Origin","https://youtube-mern-front.vercel.app");
-header("Access-Control-Allow-Methods","GET,POST,PUT,DELETE");
-header("Access-Control-Allow-Headers","Content-Type", X-Auth-Token, Origin, Authorization);
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://youtube-mern-front.vercel.app');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
+    
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+      return res.status(200).end();
+    }
+  
+    next();
+  });
 
-app.use(cors({
-    origin:"https://youtube-mern-front.vercel.app",
-    credentials:true
-}))
 
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
