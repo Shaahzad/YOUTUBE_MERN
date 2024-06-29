@@ -23,8 +23,32 @@ app.get("/", (req, res) => {
     res.send("hello")
 })
 
+app.use((req, res, next) => {
+    res.setHeader(
+      "Access-Control-Allow-Origin",
+       "*"
+    );
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
+    );
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+    );
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    res.setHeader("Access-Control-Allow-Private-Network", true);
+  
+    next();
+  });
 
-app.use(cors())
+
+app.use(cors({
+    origin:"*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+    preflightContinue: true,
+}))
 
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
